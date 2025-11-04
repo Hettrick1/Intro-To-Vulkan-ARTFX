@@ -4,7 +4,8 @@
 #include "../Scene.h"
 namespace Engine::Scene
 {
-	class Scene01Clear : public Scene {
+	class Scene01Clear : public Scene 
+	{
 	public:
 		void Load(Renderer::Renderer& renderer) override;
 		bool Update(float dt) override;

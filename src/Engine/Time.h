@@ -3,7 +3,8 @@
 
 namespace Engine
 {
-	class Time {
+	class Time 
+	{
 	public:
 		float ComputeDeltaTime();
 		void DelayTime();

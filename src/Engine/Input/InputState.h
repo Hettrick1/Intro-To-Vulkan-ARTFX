@@ -1,16 +1,19 @@
 #ifndef INPUTSTATE_H
 #define INPUTSTATE_H
+
 namespace Engine::Input
 {
-
-	enum class DirectionalKey {
+	enum class DirectionalKey 
+	{
 		Up,
 		Down,
 		Left,
 		Right
 	};
-	struct InputState {
-		bool IsUp(DirectionalKey key) {
+	struct InputState 
+	{
+		bool IsUp(DirectionalKey key) 
+		{
 			switch (key) {
 			case DirectionalKey::Up:
 				return !up;
@@ -22,8 +25,10 @@ namespace Engine::Input
 				return !right;
 			}
 		}
-		bool IsDown(DirectionalKey key) {
-			switch (key) {
+		bool IsDown(DirectionalKey key) 
+		{
+			switch (key) 
+			{
 			case DirectionalKey::Up:
 				return up;
 			case DirectionalKey::Down:
@@ -34,8 +39,10 @@ namespace Engine::Input
 				return right;
 			}
 		}
-		bool IsPressed(DirectionalKey key) {
-			switch (key) {
+		bool IsPressed(DirectionalKey key) 
+		{
+			switch (key) 
+			{
 			case DirectionalKey::Up:
 				return up && !previousUp;
 			case DirectionalKey::Down:
@@ -46,8 +53,10 @@ namespace Engine::Input
 				return right && !previousRight;
 			}
 		}
-		bool IsReleased(DirectionalKey key) {
-			switch (key) {
+		bool IsReleased(DirectionalKey key) 
+		{
+			switch (key) 
+			{
 			case DirectionalKey::Up:
 				return !up && previousUp;
 			case DirectionalKey::Down:
