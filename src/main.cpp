@@ -6,6 +6,7 @@
 #include "Engine/Scene/Child/Scene03VertexBuffer.h"
 #include "Engine/Time.h"
 #include "Engine/Window.h"
+
 using namespace std;
 int main(int argc, char** argv) {
 	Engine::Window window{};

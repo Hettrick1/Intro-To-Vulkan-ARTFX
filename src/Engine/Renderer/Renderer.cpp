@@ -117,9 +117,8 @@ namespace Engine::Renderer
 		{
 			SDL_Log("AcquireGPUCommandBuffer failed: %s", SDL_GetError());
 		}
-		SDL_GPUTexture* swapchainTexture;
 
-		if (!SDL_AcquireGPUSwapchainTexture(cmdBuffer, renderWindow, &swapchainTexture, nullptr, nullptr)) 
+		if (!SDL_WaitAndAcquireGPUSwapchainTexture(cmdBuffer, renderWindow, &swapchainTexture, nullptr, nullptr))
 		{
 			SDL_Log("AcquireGPUSwapchainTexture failed: %s", SDL_GetError());
 		}
@@ -136,27 +135,54 @@ namespace Engine::Renderer
 
 	void Renderer::End() const 
 	{
-		SDL_EndGPURenderPass(renderPass);
-		SDL_SubmitGPUCommandBuffer(cmdBuffer);
+		if (renderPass)
+		{
+			SDL_EndGPURenderPass(renderPass);
+			SDL_SubmitGPUCommandBuffer(cmdBuffer);
+		}
+		else
+		{
+			SDL_Log("Renderer::End called but no render pass was in progress — skipping End/Submit.");
+		}
 	}
 
 	void Renderer::BindGraphicsPipeline(SDL_GPUGraphicsPipeline* pipeline) const 
 	{
+		if (!renderPass)
+		{
+			SDL_Log("BindGraphicsPipeline called but renderPass is null — call Begin() and ensure it succeeded.");
+			return;
+		}
 		SDL_BindGPUGraphicsPipeline(renderPass, pipeline);
 	}
 
 	void Renderer::DrawPrimitives(int numVertices, int numInstances, int firstVertex, int firstInstance) const 
 	{
+		if (!renderPass)
+		{
+			SDL_Log("BindGraphicsPipeline called but renderPass is null — call Begin() and ensure it succeeded.");
+			return;
+		}
 		SDL_DrawGPUPrimitives(renderPass, numVertices, numInstances, firstVertex, firstInstance);
 	}
 
 	void Renderer::SetViewport(const SDL_GPUViewport& viewport) const 
 	{
+		if (!renderPass)
+		{
+			SDL_Log("BindGraphicsPipeline called but renderPass is null — call Begin() and ensure it succeeded.");
+			return;
+		}
 		SDL_SetGPUViewport(renderPass, &viewport);
 	}
 
 	void Renderer::SetScissorRect(const SDL_Rect& rect) const 
 	{
+		if (!renderPass)
+		{
+			SDL_Log("BindGraphicsPipeline called but renderPass is null — call Begin() and ensure it succeeded.");
+			return;
+		}
 		SDL_SetGPUScissor(renderPass, &rect);
 	}
 
@@ -167,6 +193,11 @@ namespace Engine::Renderer
 
 	void Renderer::BindVertexBuffers(Uint32 firstSlot, const SDL_GPUBufferBinding& bindings, Uint32 numBindings) const 
 	{
+		if (!renderPass)
+		{
+			SDL_Log("BindGraphicsPipeline called but renderPass is null — call Begin() and ensure it succeeded.");
+			return;
+		}
 		SDL_BindGPUVertexBuffers(renderPass, firstSlot, &bindings, numBindings);
 	}
 

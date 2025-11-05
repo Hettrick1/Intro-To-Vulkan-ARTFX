@@ -73,12 +73,12 @@ namespace Engine::Scene
 
 		// Map the transfer buffer and fill it with data (data is bound to the transfer buffer)
 		auto* transferData = static_cast<PositionColorVertex*>(renderer.MapTransferBuffer(transferBuffer, false));
-		transferData[0] = PositionColorVertex{ -0.5, -0.5, 0, 255, 0, 0, 255 };
-		transferData[1] = PositionColorVertex{ 0.5, -0.5, 0, 0, 255, 0, 255 };
-		transferData[2] = PositionColorVertex{ -0.5, 0.5, 0, 0, 0, 255, 255 };
-		transferData[3] = PositionColorVertex{ -0.5, 0.5, 0, 255, 0, 0, 255 };
-		transferData[4] = PositionColorVertex{ 0.5, 0.5, 0, 0, 255, 0, 255 };
-		transferData[5] = PositionColorVertex{ 0.5, -0.5, 0, 0, 0, 255, 255 };
+		transferData[0] = PositionColorVertex{ -0.5f, -0.5f, 0.0f,  255, 100, 100, 255 };
+		transferData[1] = PositionColorVertex{  0.5f, -0.5f, 0.0f,  100, 255, 150, 255 }; 
+		transferData[2] = PositionColorVertex{ -0.5f,  0.5f, 0.0f,  100, 150, 255, 255 };
+		transferData[3] = PositionColorVertex{ -0.5f,  0.5f, 0.0f,  100, 150, 255, 255 };
+		transferData[4] = PositionColorVertex{  0.5f,  0.5f, 0.0f,  255, 255, 120, 255 }; 
+		transferData[5] = PositionColorVertex{  0.5f, -0.5f, 0.0f,  100, 255, 150, 255 };
 		renderer.UnmapTransferBuffer(transferBuffer);
 
 		// Upload the transfer data to the vertex buffer
