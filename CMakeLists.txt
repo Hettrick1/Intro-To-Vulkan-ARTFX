@@ -36,7 +36,7 @@ if (NOT SDL3_FOUND) # If there's none, fetch and build SDL3
 endif()
 
 file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp)
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} "src/Engine/Window.h" "src/Engine/Window.cpp" "src/Engine/Time.h" "src/Engine/Time.cpp" "src/Engine/Input/InputState.h" "src/Engine/Scene/Scene.h"  "src/Engine/Scene/Child/Scene01Clear.h" "src/Engine/Scene/Child/Scene01Clear.cpp" "src/Engine/Renderer/Renderer.h" "src/Engine/Renderer/Renderer.cpp" "src/Engine/Scene/Child/Scene02Triangle.h" "src/Engine/Scene/Child/Scene02Triangle.cpp" "src/Engine/Scene/Child/Scene03VertexBuffer.h" "src/Engine/Scene/Child/Scene03VertexBuffer.cpp" "src/Engine/Renderer/PositionColorVertex.h")
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} "src/Engine/Window.h" "src/Engine/Window.cpp" "src/Engine/Time.h" "src/Engine/Time.cpp" "src/Engine/Input/InputState.h" "src/Engine/Scene/Scene.h"  "src/Engine/Scene/Child/Scene01Clear.h" "src/Engine/Scene/Child/Scene01Clear.cpp" "src/Engine/Renderer/Renderer.h" "src/Engine/Renderer/Renderer.cpp" "src/Engine/Scene/Child/Scene02Triangle.h" "src/Engine/Scene/Child/Scene02Triangle.cpp" "src/Engine/Scene/Child/Scene03VertexBuffer.h" "src/Engine/Scene/Child/Scene03VertexBuffer.cpp" "src/Engine/Renderer/PositionColorVertex.h" "src/Engine/Scene/Child/Scene04TriangleCullModes.h" "src/Engine/Scene/Child/Scene04TriangleCullModes.cpp" "src/Engine/Scene/Child/Scene05TriangleIndexed.h" "src/Engine/Scene/Child/Scene05TriangleIndexed.cpp")
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${SDL3_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} SDL3::SDL3)

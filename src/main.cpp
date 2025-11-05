@@ -4,6 +4,8 @@
 #include "Engine/Scene/Child/Scene01Clear.h"
 #include "Engine/Scene/Child/Scene02Triangle.h"
 #include "Engine/Scene/Child/Scene03VertexBuffer.h"
+#include "Engine/Scene/Child/Scene04TriangleCullModes.h"
+#include "Engine/Scene/Child/Scene05TriangleIndexed.h"
 #include "Engine/Time.h"
 #include "Engine/Window.h"
 
@@ -14,7 +16,7 @@ int main(int argc, char** argv) {
 	Engine::Time time{};
 	window.Init();
 	renderer.Init(window);
-	auto scene = std::make_unique<Engine::Scene::Scene03VertexBuffer>();
+	auto scene = std::make_unique<Engine::Scene::Scene05TriangleIndexed>();
 	scene->Load(renderer);
 	bool isRunning{ true };
 	while (isRunning) 

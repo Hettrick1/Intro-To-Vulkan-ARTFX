@@ -45,6 +45,9 @@ namespace Engine::Renderer
 		void UploadToBuffer(const SDL_GPUTransferBufferLocation& source, const SDL_GPUBufferRegion& destination, bool cycle) const;
 		void EndUploadToBuffer(SDL_GPUTransferBuffer* transferBuffer) const;
 
+		void BindIndexBuffer(const SDL_GPUBufferBinding& bindings, SDL_GPUIndexElementSize indexElementSize) const;
+		void DrawIndexedPrimitives(int numIndices, int numInstances, int firstIndex, int vertexOffset, int firstInstance) const;
+
 		SDL_GPUDevice* device{ nullptr };
 		SDL_Window* renderWindow{ nullptr };
 		SDL_GPUCommandBuffer* cmdBuffer{ nullptr };
