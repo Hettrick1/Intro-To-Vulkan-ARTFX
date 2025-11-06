@@ -20,7 +20,7 @@ namespace Engine::Scene
 
 		for (auto quad : quads)
 		{
-			quad->Load(renderer, vertexShader, fragmentShader, "ravioli.bmp");
+			quad->Load(renderer, vertexShader, fragmentShader, "cube0.bmp");
 		}
 	}
 

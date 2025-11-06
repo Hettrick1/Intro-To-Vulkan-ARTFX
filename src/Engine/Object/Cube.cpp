@@ -63,6 +63,7 @@ namespace Engine::Object
 		.num_color_targets = 1,
 		},
 		};
+		pipelineCreateInfo.rasterizer_state.cull_mode = SDL_GPU_CULLMODE_FRONT;
 		pipeline = renderer.CreateGPUGraphicsPipeline(pipelineCreateInfo);
 
 		// Clean up shader resources
