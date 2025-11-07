@@ -9,6 +9,7 @@
 #include "Engine/Scene/Child/Scene06TextureQuad.h"
 #include "Engine/Scene/Child/Scene07TextureQuadMoving.h"
 #include "Engine/Scene/Child/Scene08QuadClassTest.h"
+#include "Engine/Scene/Child/Scene09CubeClass.h"
 #include "Engine/Time.h"
 #include "Engine/Window.h"
 
@@ -19,7 +20,7 @@ int main(int argc, char** argv) {
 	Engine::Time time{};
 	window.Init();
 	renderer.Init(window);
-	auto scene = std::make_unique<Engine::Scene::Scene08QuadClassTest>();
+	auto scene = std::make_unique<Engine::Scene::Scene09CubeClass>();
 	scene->Load(renderer);
 	bool isRunning{ true };
 	while (isRunning) 

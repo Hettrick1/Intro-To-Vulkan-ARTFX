@@ -11,8 +11,8 @@ namespace Engine::Scene
 	{
 		quads =
 		{
-			new Object::Cube(),
-			new Object::Cube(),
+			new Object::Quad(),
+			new Object::Quad(),
 		};
 		auto basePath = SDL_GetBasePath();
 		auto vertexShader = renderer.LoadShader(basePath, "TexturedQuadWithMatrix.vert", 0, 1, 0, 0);
@@ -20,7 +20,7 @@ namespace Engine::Scene
 
 		for (auto quad : quads)
 		{
-			quad->Load(renderer, vertexShader, fragmentShader, "cube0.bmp");
+			quad->Load(renderer, "TexturedQuadWithMatrix.vert", "TexturedQuadWithMultiplyColor.frag", "cube0.bmp");
 		}
 	}
 

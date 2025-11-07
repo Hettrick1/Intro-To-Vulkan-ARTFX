@@ -196,7 +196,7 @@ namespace Engine::Object
 		SDL_GPUTextureSamplerBinding textureSamplerBinding{ .texture = texture, .sampler = sampler };
 		renderer.BindFragmentSamplers(0, textureSamplerBinding, 1);
 
-		Maths::Mat4 matrixUniform = Maths::Mat4::CreateTranslation(-0.5f, -0.5f, 0);
+		Maths::Mat4 matrixUniform = Maths::Mat4::CreateTranslation(-0.0f, -0.0f, 0);
 		renderer.PushVertexUniformData(0, &matrixUniform, sizeof(matrixUniform));
 		FragMultiplyUniform fragMultiplyUniform0{ 1.0f, 1.0f, 1.0f, 1.0f };
 		renderer.PushFragmentUniformData(0, &fragMultiplyUniform0, sizeof(FragMultiplyUniform));

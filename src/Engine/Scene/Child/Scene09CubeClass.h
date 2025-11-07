@@ -1,16 +1,16 @@
-#ifndef SCENE08QUADCLASSTEST_H
-#define SCENE08QUADCLASSTEST_H
+#ifndef SCENE09CUBECLASS_H
+#define SCENE09CUBECLASS_H
 
 #include <SDL3/SDL_gpu.h>
 #include "../Scene.h"
-#include "../../Object/Quad.h"
+#include "../../Object/Cube.h"
 #include <array>
 #include <vector>
 #include <string>
 
 namespace Engine::Scene
 {
-	class Scene08QuadClassTest : public Scene
+	class Scene09CubeClass : public Scene
 	{
 	public:
 		void Load(Renderer::Renderer& renderer) override;
@@ -19,7 +19,8 @@ namespace Engine::Scene
 		void Unload(Renderer::Renderer& renderer) override;
 	private:
 		Input::InputState inputState;
-		std::vector<Object::Quad*> quads;
+		std::vector<Object::Cube*> cubes;
+		float time{ 0 };
 	};
 }
 #endif

@@ -1,6 +1,8 @@
 #ifndef CUBE_H
 #define CUBE_H
 
+#include "../Maths/Mat4.h"
+#include <SDL3/SDL.h>
 #include <SDL3/SDL_gpu.h>
 #include <array>
 #include <string>
@@ -12,10 +14,15 @@ namespace Engine::Renderer
 
 namespace Engine::Object
 {
-	typedef struct FragMultiplyUniform
+	typedef struct FragMultiplyUniform2
 	{
 		float r, g, b, a;
-	} fragMultiplyUniform;
+	} FragMultiplyUniform2;
+
+	typedef struct Vector3D
+	{
+		float x, y, z;
+	} Vector3D;
 
 	class Cube
 	{
@@ -27,6 +34,11 @@ namespace Engine::Object
 		void Draw(Renderer::Renderer& renderer);
 		void Unload(Renderer::Renderer& renderer);
 
+		void SetPosition(const Vector3D& position);
+		void SetPitch(float newPitch);
+
+		inline Vector3D GetPosition() const { return position; }
+
 	private:
 		const char* basePath{ nullptr };
 		SDL_GPUShader* vertexShader{ nullptr };
@@ -36,6 +48,8 @@ namespace Engine::Object
 		SDL_GPUBuffer* indexBuffer{ nullptr };
 		SDL_GPUTexture* texture{ nullptr };
 		SDL_GPUSampler* sampler{ nullptr };
+		Vector3D position{ 0, 0, -2 };
+		float pitch{ 0 };
 	};
 }
 

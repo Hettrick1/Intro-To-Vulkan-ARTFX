@@ -2,8 +2,6 @@
 
 #include "../Renderer/Renderer.h"
 #include "../Renderer/PositionTextureVertex.h"
-#include "../Maths/Mat4.h"
-#include <SDL3/SDL.h>
 
 namespace Engine::Object
 {
@@ -209,15 +207,15 @@ namespace Engine::Object
 		SDL_GPUTextureSamplerBinding textureSamplerBinding{ .texture = texture, .sampler = sampler };
 		renderer.BindFragmentSamplers(0, textureSamplerBinding, 1);
 
-		Maths::Mat4 model = Maths::Mat4::CreateRotationMatrix(0.0, 1.0, 0.0, 30 * (3.1415 / 180)) * Maths::Mat4::CreateTranslation(0.0f, 0.0f, -3.0f);
+		Maths::Mat4 model = Maths::Mat4::CreateRotationMatrix(0.0, 1.0, 0.0, pitch * (3.1415 / 180)) * Maths::Mat4::CreateTranslation(position.x, position.y, position.z);
 		Maths::Mat4 view = Maths::Mat4::Identity;
 		Maths::Mat4 projection = Maths::Mat4::CreatePerspectiveFieldOfView(90.0f * (3.1415 / 180), 640.0f / 480.0f, 0.1f, 1000.0f);
 
 		Maths::Mat4 mvp = model * view * projection;
 		renderer.PushVertexUniformData(0, &mvp, sizeof(mvp));
 
-		FragMultiplyUniform fragMultiplyUniform0{ 1.0f, 1.0f, 1.0f, 1.0f };
-		renderer.PushFragmentUniformData(0, &fragMultiplyUniform0, sizeof(FragMultiplyUniform));
+		FragMultiplyUniform2 fragMultiplyUniform0{ 1.0f, 1.0f, 1.0f, 1.0f };
+		renderer.PushFragmentUniformData(0, &fragMultiplyUniform0, sizeof(FragMultiplyUniform2));
 		renderer.DrawIndexedPrimitives(36, 1, 0, 0, 0);
 		renderer.End();
 	}
@@ -228,5 +226,15 @@ namespace Engine::Object
 		renderer.ReleaseBuffer(indexBuffer);
 		renderer.ReleaseTexture(texture);
 		renderer.ReleaseGraphicsPipeline(pipeline);
+	}
+
+	void Cube::SetPosition(const Vector3D& newPosition)
+	{
+		position = newPosition;
+	}
+
+	void Cube::SetPitch(float newPitch)
+	{
+		pitch = newPitch;
 	}
 }
