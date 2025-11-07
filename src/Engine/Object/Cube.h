@@ -30,8 +30,8 @@ namespace Engine::Object
 		Cube() = default;
 		~Cube() = default;
 
-		void Load(Renderer::Renderer& renderer, SDL_GPUShader* vertShader, SDL_GPUShader* fragShader, const std::string& texturePath);
-		void Draw(Renderer::Renderer& renderer);
+		virtual void Load(Renderer::Renderer& renderer, SDL_GPUShader* vertShader, SDL_GPUShader* fragShader, const std::string& texturePath);
+		virtual void Draw(Renderer::Renderer& renderer);
 		void Unload(Renderer::Renderer& renderer);
 
 		void SetPosition(const Vector3D& position);
@@ -39,7 +39,7 @@ namespace Engine::Object
 
 		inline Vector3D GetPosition() const { return position; }
 
-	private:
+	protected:
 		const char* basePath{ nullptr };
 		SDL_GPUShader* vertexShader{ nullptr };
 		SDL_GPUShader* fragmentShader{ nullptr };

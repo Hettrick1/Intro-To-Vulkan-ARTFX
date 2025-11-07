@@ -3,6 +3,9 @@
 #include "../../Renderer/Renderer.h"
 #include "../../Renderer/PositionTextureVertex.h"
 #include "../../Maths/Mat4.h"
+
+#include "../../Object/CubeIndexed.h"
+#include "../../Object/CubeTextured.h"
 #include <SDL3/SDL.h>
 
 namespace Engine::Scene
@@ -11,16 +14,20 @@ namespace Engine::Scene
 	{
 		cubes =
 		{
-			new Object::Cube(),
-			new Object::Cube(),
+			new Object::CubeIndexed(),
+			new Object::CubeTextured(),
 		};
+
+		cubes[0]->SetPosition({ -1.0, 0.0, -2.0 });
+		cubes[1]->SetPosition({  1.0, 0.0, -2.0 });
+
 		auto basePath = SDL_GetBasePath();
 		auto vertexShader = renderer.LoadShader(basePath, "TexturedQuadWithMatrix.vert", 0, 1, 0, 0);
 		auto fragmentShader = renderer.LoadShader(basePath, "TexturedQuadWithMultiplyColor.frag", 1, 1, 0, 0);
 
 		for (auto quad : cubes)
 		{
-			quad->Load(renderer, vertexShader, fragmentShader, "cube0.bmp");
+			quad->Load(renderer, vertexShader, fragmentShader, "Dirt.bmp");
 		}
 	}
 
@@ -39,10 +46,14 @@ namespace Engine::Scene
 
 	void Scene09CubeClass::Draw(Renderer::Renderer& renderer)
 	{
+		renderer.Begin();
+
 		for (auto quad : cubes)
 		{
 			quad->Draw(renderer);
 		}
+
+		renderer.End();
 	}
 
 	void Scene09CubeClass::Unload(Renderer::Renderer& renderer)
