@@ -114,55 +114,49 @@ void Engine::Object::CubeTextured::Load(Renderer::Renderer& renderer, SDL_GPUSha
 
 	auto transferData = static_cast<PositionTextureVertex*>(renderer.MapTransferBuffer(transferBuffer, false));
 
-	// Face arrière (-Z) - vue depuis l'arrière
-	transferData[0] = { -0.5f, -0.5f, -0.5f, 0.0f, 1.0f };  // bas-gauche
-	transferData[1] = { 0.5f, -0.5f, -0.5f, 1.0f, 1.0f };  // bas-droite
-	transferData[2] = { 0.5f,  0.5f, -0.5f, 1.0f, 0.0f };  // haut-droite
-	transferData[3] = { -0.5f,  0.5f, -0.5f, 0.0f, 0.0f };  // haut-gauche
+	transferData[0] = { -0.5f, -0.5f, -0.5f, 0.0f, 1.0f };
+	transferData[1] = { 0.5f, -0.5f, -0.5f, 1.0f, 1.0f }; 
+	transferData[2] = { 0.5f,  0.5f, -0.5f, 1.0f, 0.0f }; 
+	transferData[3] = { -0.5f,  0.5f, -0.5f, 0.0f, 0.0f };
 
-	// Face avant (+Z) - vue depuis l'avant (inversée en X)
-	transferData[4] = { 0.5f, -0.5f,  0.5f, 0.0f, 1.0f };  // bas-gauche (côté droit en 3D)
-	transferData[5] = { -0.5f, -0.5f,  0.5f, 1.0f, 1.0f };  // bas-droite (côté gauche en 3D)
-	transferData[6] = { -0.5f,  0.5f,  0.5f, 1.0f, 0.0f };  // haut-droite (côté gauche en 3D)
-	transferData[7] = { 0.5f,  0.5f,  0.5f, 0.0f, 0.0f };  // haut-gauche (côté droit en 3D)
+	transferData[4] = { 0.5f, -0.5f,  0.5f, 0.0f, 1.0f };  
+	transferData[5] = { -0.5f, -0.5f,  0.5f, 1.0f, 1.0f }; 
+	transferData[6] = { -0.5f,  0.5f,  0.5f, 1.0f, 0.0f }; 
+	transferData[7] = { 0.5f,  0.5f,  0.5f, 0.0f, 0.0f };  
 
-	// Face gauche (-X) - vue depuis la gauche
-	transferData[8] = { -0.5f, -0.5f,  0.5f, 0.0f, 1.0f };  // bas-gauche (avant)
-	transferData[9] = { -0.5f, -0.5f, -0.5f, 1.0f, 1.0f };  // bas-droite (arrière)
-	transferData[10] = { -0.5f,  0.5f, -0.5f, 1.0f, 0.0f };  // haut-droite (arrière)
-	transferData[11] = { -0.5f,  0.5f,  0.5f, 0.0f, 0.0f };  // haut-gauche (avant)
+	transferData[8] = { -0.5f, -0.5f,  0.5f, 0.0f, 1.0f }; 
+	transferData[9] = { -0.5f, -0.5f, -0.5f, 1.0f, 1.0f }; 
+	transferData[10] = { -0.5f,  0.5f, -0.5f, 1.0f, 0.0f };
+	transferData[11] = { -0.5f,  0.5f,  0.5f, 0.0f, 0.0f };
 
-	// Face droite (+X) - vue depuis la droite
-	transferData[12] = { 0.5f, -0.5f, -0.5f, 0.0f, 1.0f };  // bas-gauche (arrière)
-	transferData[13] = { 0.5f, -0.5f,  0.5f, 1.0f, 1.0f };  // bas-droite (avant)
-	transferData[14] = { 0.5f,  0.5f,  0.5f, 1.0f, 0.0f };  // haut-droite (avant)
-	transferData[15] = { 0.5f,  0.5f, -0.5f, 0.0f, 0.0f };  // haut-gauche (arrière)
+	transferData[12] = { 0.5f, -0.5f, -0.5f, 0.0f, 1.0f }; 
+	transferData[13] = { 0.5f, -0.5f,  0.5f, 1.0f, 1.0f }; 
+	transferData[14] = { 0.5f,  0.5f,  0.5f, 1.0f, 0.0f }; 
+	transferData[15] = { 0.5f,  0.5f, -0.5f, 0.0f, 0.0f }; 
 
-	// Face bas (-Y) - vue depuis le bas
-	transferData[16] = { -0.5f, -0.5f,  0.5f, 0.0f, 1.0f };  // bas-gauche (avant)
-	transferData[17] = { 0.5f, -0.5f,  0.5f, 1.0f, 1.0f };  // bas-droite (avant)
-	transferData[18] = { 0.5f, -0.5f, -0.5f, 1.0f, 0.0f };  // haut-droite (arrière)
-	transferData[19] = { -0.5f, -0.5f, -0.5f, 0.0f, 0.0f };  // haut-gauche (arrière)
+	transferData[16] = { -0.5f, -0.5f,  0.5f, 0.0f, 1.0f };
+	transferData[17] = { 0.5f, -0.5f,  0.5f, 1.0f, 1.0f }; 
+	transferData[18] = { 0.5f, -0.5f, -0.5f, 1.0f, 0.0f }; 
+	transferData[19] = { -0.5f, -0.5f, -0.5f, 0.0f, 0.0f };
 
-	// Face haut (+Y) - vue depuis le haut
-	transferData[20] = { -0.5f,  0.5f, -0.5f, 0.0f, 1.0f };  // bas-gauche (arrière)
-	transferData[21] = { 0.5f,  0.5f, -0.5f, 1.0f, 1.0f };  // bas-droite (arrière)
-	transferData[22] = { 0.5f,  0.5f,  0.5f, 1.0f, 0.0f };  // haut-droite (avant)
-	transferData[23] = { -0.5f,  0.5f,  0.5f, 0.0f, 0.0f };  // haut-gauche (avant)
+	transferData[20] = { -0.5f,  0.5f, -0.5f, 0.0f, 1.0f };
+	transferData[21] = { 0.5f,  0.5f, -0.5f, 1.0f, 1.0f }; 
+	transferData[22] = { 0.5f,  0.5f,  0.5f, 1.0f, 0.0f }; 
+	transferData[23] = { -0.5f,  0.5f,  0.5f, 0.0f, 0.0f };
 
 	auto indexData = reinterpret_cast<Uint16*>(&transferData[24]);
 	Uint16 indices[] = {
-		// Face arrière (-Z)
+		// (-Z)
 		0, 1, 2,  0, 2, 3,
-		// Face avant (+Z)
+		// (+Z)
 		4, 5, 6,  4, 6, 7,
-		// Face gauche (-X)
+		// (-X)
 		8, 9, 10,  8, 10, 11,
-		// Face droite (+X)
+		// (+X)
 		12, 13, 14,  12, 14, 15,
-		// Face bas (-Y)
+		// (-Y)
 		16, 17, 18,  16, 18, 19,
-		// Face haut (+Y)
+		// (+Y)
 		20, 21, 22,  20, 22, 23
 	};
 	std::memcpy(indexData, indices, sizeof(indices));
